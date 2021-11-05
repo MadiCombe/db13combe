@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const connectionString =  
 process.env.MONGO_CON 
 mongoose = require('mongoose'); 
-mongoose.connect(connectionString,  
+mongoose.connect(connectionString),  
 {useNewUrlParser: true},
 
 app.use('/', indexRouter);

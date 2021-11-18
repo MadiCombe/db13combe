@@ -3,10 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  - let costumeid = toShow._id 
-  - let costume_type = toShow.costume_type 
-  - let costumecost = toShow.cost 
-  - let costumesize = toShow.size 
+  - let puppy_breed = toShow._breed 
+  - let weight = toShow.weight 
+  - let size = toShow.size 
   div 
     div.row 
       div(class='puppyAttr mr-3') Puppy Breed is: 

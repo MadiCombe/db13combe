@@ -140,6 +140,22 @@ exports.puppy_update_Page =  async function(req, res) {
   } 
 }; 
 
+/* GET create costume page */ 
+router.get('/delete, costume_controlers.costume_delete_Page)
+// Handle a delete one view with id from query 
+exports.puppy_delete_Page = async function(req, res) { 
+  console.log("Delete view for id "  + req.query.id) 
+  try{ 
+      result = await puppy.findById(req.query.id) 
+      res.render('puppydelete', { title: 'Puppy Delete', toShow: 
+result }); 
+  } 
+  catch(err){ 
+      res.status(500) 
+      res.send(`{'error': '${err}'}`); 
+  } 
+}; 
+
 }
 // Handle puppy delete on DELETE. 
 exports.puppy_delete = async function(req, res) { 

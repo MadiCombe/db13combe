@@ -38,3 +38,8 @@ ${JSON.stringify(req.body)}`)
 failed`); 
     } 
 }; 
+
+.puppyAttr { 
+    background-color: aquamarine; 
+    width: 120px; 
+  } 

@@ -93,8 +93,23 @@ size:'small'});
       console.log("Third object saved")
   }); 
 }
-
-let reseed = true; 
-if (reseed) { recreateDB();} 
-
-module.exports = app;
+// Handle Costume delete on DELETE. 
+exports.puppy_delete = async function(req, res) { 
+  console.log("delete "  + req.params.id) 
+  try { 
+      result = await puppy.findByIdAndDelete( req.params.id) 
+      console.log("Removed " + result) 
+      res.send(result) 
+  } catch (err) { 
+      res.status(500) 
+      res.send(`{"error": Error deleting ${err}}`); 
+  } 
+}
+exports.api = function(req, res) { 
+  res.write('['); 
+  res.write('{"resource":"costumes", '); 
+  res.write('  "verbs":["GET","PUT", "DELETE"] '); 
+  res.write('}'); 
+  res.write(']') 
+  res.send(); 
+}; 

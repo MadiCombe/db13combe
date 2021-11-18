@@ -93,7 +93,55 @@ size:'small'});
       console.log("Third object saved")
   }); 
 }
-// Handle Costume delete on DELETE. 
+/* GET detail puppy page */ 
+router.get('/detail', puppy_controlers.puppy_view_one_Page)
+
+ 
+ // Handle a show one view with id specified by query 
+ exports.puppy_view_one_Page = async function(req, res) { 
+  puppy.log("single view for id "  + req.query.id) 
+  try{ 
+      result = await puppy.findById( req.query.id) 
+      res.render('puppydetail',  
+{ title: 'Puppy Detail', toShow: result }); 
+  } 
+  catch(err){ 
+      res.status(500) 
+      res.send(`{'error': '${err}'}`); 
+  } 
+}
+
+/* GET create update page */ 
+router.get('/update, puppy_controlers.puppy_update_Page)
+ 
+ // Handle building the view for creating a costume. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.puppy_create_Page =  function(req, res) { 
+  console.log("create view") 
+  try{ 
+      res.render('puppycreate', { title: 'Puppy Create'}); 
+  } 
+  catch(err){ 
+      res.status(500) 
+      res.send(`{'error': '${err}'}`); 
+  } 
+  // Handle building the view for updating a costume. 
+// query provides the id 
+exports.puppy_update_Page =  async function(req, res) { 
+  console.log("update view for item "+req.query.id) 
+  try{ 
+      let result = await puppy.findById(req.query.id) 
+      res.render('puppyupdate', { title: 'Puppy Update', toShow: result }); 
+  } 
+  catch(err){ 
+      res.status(500) 
+      res.send(`{'error': '${err}'}`); 
+  } 
+}; 
+
+}
+// Handle puppy delete on DELETE. 
 exports.puppy_delete = async function(req, res) { 
   console.log("delete "  + req.params.id) 
   try { 
@@ -112,4 +160,4 @@ exports.api = function(req, res) {
   res.write('}'); 
   res.write(']') 
   res.send(); 
-}; 
+}

@@ -40,3 +40,21 @@ block content
         alert("Update failed " + error ) 
       }); 
     }); 
+    block content 
+  h1= title 
+  - let items = results; 
+  div(class="container-fluid") 
+    div(class="row") 
+      each item in items  
+        div(class="row-sm-2", class="m-1") Item #{item.puppy_breed}(#{item.size}) is #{item.weight} 
+        div(class="container-fluid") 
+    div(class="row m-1") 
+      each item in items  
+        - let destination = `dispatch(\"/puppy/update?id=${item._breed}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.puppy_breed}(#{item.size}) is #{item.weight} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+   
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
